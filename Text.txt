@@ -1,1 +1,0 @@
--> routes folder me hm sirf kaun kaun si api rhegi ye decide krte h but in the controllers folder us api ki kya functionality rhegi hm waha wo decide krte h.
