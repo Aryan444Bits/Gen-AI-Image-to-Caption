@@ -1,9 +1,13 @@
-import React from 'react'
-import SignUp from './authUI/SignUp'
+import React from "react";
+import SignUp from "./authUI/SignUp";
+import Headbar from "./Headbar";
 const App = () => {
-  return (<div className=' h-full w-screen bg-yellow-200' >
- <SignUp/>
-  </div >)
-}
+  return (
+    <div className=" relative pt-30 h-screen w-screen bg-gray-200 ">
+      <Headbar />
+      <SignUp />
+    </div>
+  );
+};
 
-export default App
+export default App;
