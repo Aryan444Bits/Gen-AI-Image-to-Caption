@@ -15,4 +15,4 @@ router.get('/user',userController)
 router.get('/logout',logoutController)
 
 
-module.exports = router
+module.exports = router;

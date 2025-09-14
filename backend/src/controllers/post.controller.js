@@ -1,4 +1,3 @@
-const postModel = require('../models/post.model')
 const generateCaption = require('../service/ai.service')
 
 

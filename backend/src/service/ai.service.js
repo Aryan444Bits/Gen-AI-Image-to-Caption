@@ -1,7 +1,9 @@
 const { GoogleGenAI } = require("@google/genai");
 
 // The client gets the API key from the environment variable `GEMINI_API_KEY`.
-const ai = new GoogleGenAI({});
+const ai = new GoogleGenAI({
+    apiKey : process.env.GEMINI_API_KEY
+});
 
 async function  generateCaption(base64ImageFile) {
     const contents = [
@@ -23,7 +25,8 @@ async function  generateCaption(base64ImageFile) {
             You generate single captions for images.
             Your caption ahould be short and concise.
             You use hashtags and emojis in the caption.
-            For caption generation use simple language.
+            For caption generation use tapori language.
+            make the caption in funny and dark and darkest humor.
             `
         }
     });
