@@ -35,7 +35,7 @@ async function registerController(req,res){
 }
 
 async function loginController(req,res){
-    const {username , password} = req.body;
+    const {username , password} = req.query
 
     const user = await userModel.findOne({
         username : username
