@@ -1,16 +1,11 @@
-import React from "react";
-import SignUp from "./authUI/SignUp";
-import Headbar from "./Headbar";
-import Chatbox from "./chat/Chat";
+import Dasboard from "./pages/Dasboard";
+import Footer from "./pages/Footer";
 
 const App = () => {
-  return (
-    // <div className=" relative pt-30 h-screen w-screen bg-gray-200 ">
-    //   <Headbar />
-    //   <SignUp />
-    // </div>
-    <Chatbox/>
-  );
+  return (<div>
+    <Dasboard/>
+    <Footer/>
+  </div>);
 };
 
 export default App;

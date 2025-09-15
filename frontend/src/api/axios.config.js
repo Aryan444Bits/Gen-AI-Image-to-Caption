@@ -14,7 +14,8 @@ import axios from "axios";
 // axios.defaults.headers.post["Content-Type"] = "application/json";
 
 const mainAxios = axios.create({
-    baseURL: 'http://localhost:3000/'
+    baseURL: 'http://localhost:3000/',
+    timeout: 10000
 });
 
 const authAxios = axios.create({
