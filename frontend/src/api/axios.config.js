@@ -10,7 +10,7 @@
 
 import axios from "axios";
 
-// // For common config
+// For common config
 // axios.defaults.headers.post["Content-Type"] = "application/json";
 
 const mainAxios = axios.create({
