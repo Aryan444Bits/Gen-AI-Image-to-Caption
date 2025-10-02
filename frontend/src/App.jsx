@@ -3,7 +3,7 @@ import Mainroutes from "./Mainroutes";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 const App = () => {
-  localStorage.setItem("set", "false");
+  localStorage.setItem("set", "true");
   const value = localStorage.getItem("set") === "false";
 
   console.log(value);

@@ -45,6 +45,7 @@ async function loginController(req,res){
         return res.status(404).json({
             message:"User Not Found"
         })
+        console.log("user not found")
     }
 
     const isPasswordValid = await bcrypt.compare(password,user.password)

@@ -1,44 +1,18 @@
-import { useState } from "react";
+import {mainAxios} from "../api/axios.config";
+import { useForm } from "react-hook-form";
 
 function Login() {
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-    rememberMe: false
-  });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setCredentials(prev => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value
-    }));
-  };
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const submitForm = (data) => {
+    console.log(data)
+    const res = async () => await mainAxios.get(`/api/auth/login?username=${data.username}&?password=${data.password}`)
+    console.log(res);
+  }
+  console.log(watch("password"))
+  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would handle login logic
-    console.log("Login attempted with:", credentials);
-    
-    // If remember me is checked, save to localStorage
-    if (credentials.rememberMe) {
-      localStorage.setItem("rememberedEmail", credentials.email);
-    } else {
-      localStorage.removeItem("rememberedEmail");
-    }
-  };
-
-  // Check if there's a remembered email on component mount
-  useState(() => {
-    const rememberedEmail = localStorage.getItem("rememberedEmail");
-    if (rememberedEmail) {
-      setCredentials(prev => ({
-        ...prev,
-        email: rememberedEmail,
-        rememberMe: true
-      }));
-    }
-  }, []);
+  // Check if there's a remembered username on component mount
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -57,9 +31,9 @@ function Login() {
             <p className="mt-6 text-lg font-medium text-gray-900">Login to get started</p>
           </div>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-6" onSubmit={handleSubmit(submitForm)}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
                 User Name
               </label>
               <div className="relative">
@@ -67,14 +41,13 @@ function Login() {
                   <i className="fas fa-envelope text-gray-400"></i>
                 </div>
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
+                  {...register("username")}
+                  id="username"
+                  name="username"
+                  type="username"
                   required
                   className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                   placeholder="e.i. : xxxx@domain.com"
-                  value={credentials.email}
-                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -88,14 +61,12 @@ function Login() {
                   <i className="fas fa-lock text-gray-400"></i>
                 </div>
                 <input
+                  {...register("password")}
                   id="password"
                   name="password"
-                  type="password"
                   required
                   className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                   placeholder="enter password"
-                  value={credentials.password}
-                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -103,12 +74,11 @@ function Login() {
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
+                  {...register("remember")}
                   id="rememberMe"
                   name="rememberMe"
                   type="checkbox"
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  checked={credentials.rememberMe}
-                  onChange={handleChange}
                 />
                 <label htmlFor="rememberMe" className="ml-2 block text-sm text-gray-700">
                   Remember me?
